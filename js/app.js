@@ -42,6 +42,7 @@ function displayResult() {
 
 function resetCounter() {
   i = 0;
+  saved = [];
   value.innerHTML = 0;
   memory.innerHTML = "";
 }
