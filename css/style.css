@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #202124;
+}
+
+.title {
+  width: 40%;
+  margin: 40px auto 40px;
+}
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #e8eaed;
+  font-size: 60px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+.container button {
+  height: 100px;
+  width: 150px;
+  color: #e8eaed;
+  font-size: 60px;
+  text-align: center;
+  padding: 0px 16px 32px 16px;
+}
+.container button:nth-of-type(2),
+.container button:nth-of-type(3) {
+  height: 100px;
+  width: 100px;
+  color: #e8eaed;
+  font-size: 60px;
+  text-align: center;
+  padding: 0px 16px 32px 16px;
+}
+.output {
+  background-color: #e8eaed;
+  width: 30%;
+  height: 200px;
+  border-radius: 5px;
+}
+.output p {
+  font-family: "Stick No Bills", sans-serif;
+  font-size: 120px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.container2 {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: space-around;
+}
+.reset-save {
+  width: 20%;
+  margin: 40px auto;
+}
+.reset-save button {
+  width: 100%;
+}
+
+.memory {
+  width: 30%;
+  height: 100px;
+  background-color: #e8eaed;
+  border-radius: 5px;
+  margin: auto;
+}
+.memory p {
+  font-family: "Stick No Bills", sans-serif;
+  font-size: 25px;
+}
