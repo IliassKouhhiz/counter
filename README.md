@@ -1,6 +1,6 @@
 # Counter
 
-This is a simple counter, developed with html, css, javascript and bootstrap for some component.
+This is a simple counter, developed with html, css, javascript and bootstrap for some components.
 
 ![MacBook Pro 16](https://user-images.githubusercontent.com/73239060/134316870-63dd3478-380a-4e51-aeb9-e552bce4f9d7.png)
 
