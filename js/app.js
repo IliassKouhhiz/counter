@@ -1,60 +1,98 @@
 let value = document.querySelector(".output p");
-let dec = document.getElementById("decrease");
-let inc = document.getElementById("increase");
-let dec_10 = document.getElementById("decrease_10");
-let inc_10 = document.getElementById("increase_10");
-let reset = document.getElementById("reset");
-let save = document.getElementById("save");
+let container = document.querySelector(".container");
+let output = document.querySelector(".output");
+let reset = document.querySelector(".reset-save:nth-of-type(1)");
+let save = document.querySelector(".reset-save:nth-of-type(2)");
 let memory = document.querySelector(".memory p");
 let i = 0;
 let saved = [];
+let text = "";
 
-inc.addEventListener("click", increase);
-dec.addEventListener("click", decrease);
-inc_10.addEventListener("click", increase10);
-dec_10.addEventListener("click", decrease10);
-reset.addEventListener("click", resetCounter);
-save.addEventListener("click", saveResult);
+const createButton = (elemAttributes, elemTxt, elemName, operator, amount) => {
+  const button = document.createElement("button");
 
-function increase() {
-  i++;
-  displayResult();
-}
+  for (key in elemAttributes) {
+    button.setAttribute(key, elemAttributes[key]);
+  }
+  button.innerHTML = elemTxt;
 
-function decrease() {
-  i--;
-  displayResult();
-}
+  changeValue = function () {
+    i = operator === "increase" ? i + amount : i - amount;
+    displayResult();
+  };
+  resetCounter = function () {
+    i = 0;
+    saved = [];
+    value.innerHTML = 0;
+    memory.innerHTML = "";
+  };
+  saveResult = function () {
+    saved.push(value.innerHTML);
+    saved.forEach(displayMemory);
+    memory.innerHTML = text;
+    text = "";
+  };
 
-function increase10() {
-  i = i + 10;
-  displayResult();
-}
+  elemName === "reset"
+    ? button.addEventListener("click", this.resetCounter)
+    : elemName === "save"
+    ? button.addEventListener("click", this.saveResult)
+    : button.addEventListener("click", this.changeValue);
 
-function decrease10() {
-  i = i - 10;
-  displayResult();
-}
+  return button;
+};
 
 function displayResult() {
   value.innerHTML = i;
 }
-
-function resetCounter() {
-  i = 0;
-  saved = [];
-  value.innerHTML = 0;
-  memory.innerHTML = "";
-}
-
-let text = "";
-function saveResult() {
-  saved.push(value.innerHTML);
-  saved.forEach(displayMemory);
-  memory.innerHTML = text;
-  text = "";
-}
-
 function displayMemory(value) {
   text += value + ", ";
 }
+
+const decreaseByOneUnit = createButton(
+  { class: "btn btn-primary btn-lg", id: "decrease", type: "button" },
+  "-",
+  "decrease by one",
+  "decrease",
+  1
+);
+const decreaseByTenUnits = createButton(
+  { class: "btn btn-primary btn-lg", id: "decrease_10", type: "button" },
+  "-10",
+  "decrease by ten",
+  "decrease",
+  10
+);
+const increaseByOneUnit = createButton(
+  { class: "btn btn-danger btn-lg", id: "increase", type: "button" },
+  "+",
+  "increase by one",
+  "increase",
+  1
+);
+const increaseByTenUnits = createButton(
+  { class: "btn btn-danger btn-lg", id: "increase_10", type: "button" },
+  "+10",
+  "increase by ten",
+  "increase",
+  10
+);
+
+const resetButton = createButton(
+  { class: "btn btn-success btn-lg", id: "reset", type: "button" },
+  "Reset",
+  "reset"
+);
+const saveButton = createButton(
+  { class: "btn btn-warning btn-lg", id: "save", type: "button" },
+  "Save",
+  "save"
+);
+
+output.before(decreaseByTenUnits);
+output.before(decreaseByOneUnit);
+output.after(increaseByTenUnits);
+output.after(increaseByOneUnit);
+
+reset.appendChild(resetButton);
+save.appendChild(saveButton);
